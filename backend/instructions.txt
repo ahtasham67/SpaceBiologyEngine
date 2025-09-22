@@ -1,0 +1,19 @@
+/models -> db models
+/routes -> api routes
+/schemas -> pydantic schemas
+/services -> business logic
+/utils -> utility/helper functions
+/config -> configuration settings(database, environment variables, etc.)
+
+main.py -> entry point
+
+please follow this structure for better organization and maintainability of the codebase.
+
+firstly go to backend directory and create a virtual environment using the command : `python -m venv venv`
+
+then activate the virtual environment using the command : `source venv/bin/activate` (for linux)
+
+then create a .env file in the backend directory and add the the similar content as shown in the .env.example file.
+
+finally run command : `python main.py`
+
