@@ -1,93 +1,159 @@
-import React from "react";
-
 function HomePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white">
-      {/* Tailwind Test - This should be red background with white text */}
-      <div className="bg-red-500 text-white p-4 text-center font-bold">
-        🎉 Tailwind CSS is Working! 🎉
+    <div className="min-h-screen bg-slate-900 text-white relative overflow-hidden">
+      {/* Stellar background */}
+      <div className="stellar-bg absolute inset-0"></div>
+
+      {/* Nebula background effects */}
+      <div className="nebula-bg absolute inset-0"></div>
+
+      {/* Floating cosmic elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-10 left-10 w-2 h-2 bg-blue-400 rounded-full twinkle-animation"></div>
+        <div
+          className="absolute top-20 right-20 w-1 h-1 bg-white rounded-full twinkle-animation"
+          style={{ animationDelay: "1s" }}
+        ></div>
+        <div
+          className="absolute bottom-32 left-32 w-1.5 h-1.5 bg-blue-300 rounded-full twinkle-animation"
+          style={{ animationDelay: "2s" }}
+        ></div>
+        <div
+          className="absolute top-40 left-1/3 w-1 h-1 bg-white rounded-full twinkle-animation"
+          style={{ animationDelay: "0.5s" }}
+        ></div>
+        <div
+          className="absolute bottom-20 right-1/4 w-2 h-2 bg-blue-500 rounded-full twinkle-animation"
+          style={{ animationDelay: "1.5s" }}
+        ></div>
       </div>
-      
+
       {/* Navbar */}
-      <nav className="flex justify-between items-center p-6 bg-gray-900 bg-opacity-50">
-        <h1 className="text-2xl font-bold tracking-wide">SpaceBio Engine</h1>
-        <ul className="flex gap-6 text-gray-300">
-          <li className="hover:text-white cursor-pointer">Home</li>
-          <li className="hover:text-white cursor-pointer">Research</li>
-          <li className="hover:text-white cursor-pointer">Publications</li>
-          <li className="hover:text-white cursor-pointer">About</li>
+      <nav className="relative z-10 flex justify-between items-center p-6 border-b border-gray-800/50 backdrop-blur-sm">
+        <div className="flex items-center gap-3">
+          <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg flex items-center justify-center cosmic-glow">
+            <span className="text-white font-bold text-lg">🧬</span>
+          </div>
+          <h1 className="text-2xl font-bold space-font cosmic-text">
+            SpaceBio Engine
+          </h1>
+        </div>
+        <ul className="hidden md:flex gap-8 text-gray-300 space-font">
+          <li className="hover:text-blue-400 cursor-pointer transition-all duration-300 hover:scale-105">
+            Home
+          </li>
+          <li className="hover:text-blue-400 cursor-pointer transition-all duration-300 hover:scale-105">
+            Research
+          </li>
+          <li className="hover:text-blue-400 cursor-pointer transition-all duration-300 hover:scale-105">
+            Publications
+          </li>
+          <li className="hover:text-blue-400 cursor-pointer transition-all duration-300 hover:scale-105">
+            About
+          </li>
         </ul>
       </nav>
 
-      {/* Hero Section */}
-      <header className="flex flex-col-reverse md:flex-row items-center justify-between px-6 md:px-24 py-20 md:py-32">
-        <div className="md:w-1/2 text-center md:text-left">
-          <h2 className="text-4xl md:text-6xl font-extrabold mb-6">
-            Explore the Frontiers of Space Biology
-          </h2>
-          <p className="text-gray-300 mb-8">
-            SpaceBio Engine makes space biology research accessible, interactive, 
-            and engaging. Explore human health in space, plant growth in microgravity, 
-            and long-term survival on Mars.
+      {/* Main Content */}
+      <main className="relative z-10 max-w-7xl mx-auto px-6 py-20">
+        {/* Hero Section */}
+        <div className="text-center mb-20">
+          <h1 className="text-6xl md:text-8xl font-bold mb-8 leading-tight space-font">
+            <span className="text-white cosmic-text">Advancing </span>
+            <span className="space-gradient-text">Space Biology</span>
+            <span className="block text-white cosmic-text mt-4">Research</span>
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+            Explore the fascinating cosmos of life beyond Earth. From
+            microgravity's molecular mysteries to the physiological frontiers of
+            interplanetary exploration.
           </p>
-          <div className="flex justify-center md:justify-start gap-4">
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold">
-              Get Started
+          <div className="flex justify-center mt-8">
+            <div className="w-24 h-1 bg-gradient-to-r from-transparent via-blue-400 to-transparent"></div>
+          </div>
+        </div>
+
+        {/* Research Areas Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+          <div className="space-card rounded-xl p-8 float-animation">
+            <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center mb-6 cosmic-glow mx-auto">
+              <span className="text-4xl">🔗</span>
+            </div>
+            <h3 className="text-2xl font-bold mb-4 text-white text-center space-font cosmic-text">
+              Digital Twinning
+            </h3>
+            <p className="text-gray-300 leading-relaxed text-center">
+              Explore the cutting-edge realm of digital twinning in space
+              biology, where virtual models mirror biological systems to unlock
+              cosmic mysteries.
+            </p>
+          </div>
+
+          <div
+            className="space-card rounded-xl p-8 float-animation"
+            style={{ animationDelay: "0.5s" }}
+          >
+            <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center mb-6 cosmic-glow mx-auto">
+              <span className="text-4xl">📚</span>
+            </div>
+            <h3 className="text-2xl font-bold mb-4 text-white text-center space-font cosmic-text">
+              Space Biology Publications
+            </h3>
+            <p className="text-gray-300 leading-relaxed text-center">
+              Access comprehensive research publications covering microgravity
+              biology, astrobiology, and life sciences from space missions
+              worldwide.
+            </p>
+          </div>
+
+          <div
+            className="space-card rounded-xl p-8 float-animation"
+            style={{ animationDelay: "1s" }}
+          >
+            <div className="w-20 h-20 bg-gradient-to-br from-red-500 to-red-700 rounded-full flex items-center justify-center mb-6 cosmic-glow mx-auto">
+              <span className="text-4xl">🫀</span>
+            </div>
+            <h3 className="text-2xl font-bold mb-4 text-white text-center space-font cosmic-text">
+              Human Physiology
+            </h3>
+            <p className="text-gray-300 leading-relaxed text-center">
+              Mapping the human body's extraordinary adaptations during extended
+              voyages through the infinite cosmic frontier.
+            </p>
+          </div>
+        </div>
+
+        {/* Call to Action */}
+        <div className="text-center space-card p-12 rounded-2xl cosmic-glow">
+          <h2 className="text-5xl font-bold mb-6 space-font cosmic-text">
+            Launch Your Cosmic Research
+          </h2>
+          <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
+            Access the universe of space biology knowledge. Discover
+            groundbreaking research from the International Space Station to Mars
+            mission preparations.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <button className="space-button bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white px-10 py-4 rounded-lg font-bold text-lg transition-all duration-300 cosmic-glow space-font">
+              🚀 Explore Research
             </button>
-            <button className="border border-gray-400 hover:border-white px-6 py-3 rounded-lg font-semibold">
-              Learn More
+            <button className="space-button border-2 border-blue-500 hover:bg-blue-500/10 text-blue-400 hover:text-white px-10 py-4 rounded-lg font-bold text-lg transition-all duration-300 space-font">
+              🌌 Learn More
             </button>
           </div>
         </div>
-
-        <div className="md:w-1/2 mb-10 md:mb-0">
-          <img
-            src="https://images.unsplash.com/photo-1616772611332-1b2f7ed4d1f1?auto=format&fit=crop&w=800&q=80"
-            alt="Space Research"
-            className="rounded-xl shadow-2xl"
-          />
-        </div>
-      </header>
-
-      {/* Features Section */}
-      <section className="px-6 md:px-24 py-20 bg-gray-800">
-        <h3 className="text-3xl font-bold mb-12 text-center">What You Can Do</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
-          <div className="bg-gray-700 p-6 rounded-xl hover:scale-105 transform transition">
-            <h4 className="text-xl font-semibold mb-4">Research Space Biology</h4>
-            <p className="text-gray-300">
-              Instantly explore publications on microgravity, human health, and plant growth in space.
-            </p>
-          </div>
-          <div className="bg-gray-700 p-6 rounded-xl hover:scale-105 transform transition">
-            <h4 className="text-xl font-semibold mb-4">Interactive Summaries</h4>
-            <p className="text-gray-300">
-              Get 5-minute summaries of key research, designed to save time and highlight trends.
-            </p>
-          </div>
-          <div className="bg-gray-700 p-6 rounded-xl hover:scale-105 transform transition">
-            <h4 className="text-xl font-semibold mb-4">Discover Trends</h4>
-            <p className="text-gray-300">
-              See trending studies in space biology and track how research evolves over time.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Call-to-Action Section */}
-      <section className="px-6 md:px-24 py-20 text-center">
-        <h3 className="text-3xl font-bold mb-6">Start Exploring Space Biology Today</h3>
-        <p className="text-gray-300 mb-8">
-          Join a growing community of space biology enthusiasts, researchers, and students.
-        </p>
-        <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold">
-          Get Started
-        </button>
-      </section>
+      </main>
 
       {/* Footer */}
-      <footer className="bg-gray-900 py-8 text-center text-gray-400">
-        © 2025 SpaceBio Engine. All rights reserved.
+      <footer className="relative z-10 border-t border-gray-800/50 py-8 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <p className="text-gray-400 space-font">
+            &copy; 2025 SpaceBio Engine. Advancing life among the stars.
+          </p>
+          <div className="flex justify-center mt-4">
+            <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent"></div>
+          </div>
+        </div>
       </footer>
     </div>
   );

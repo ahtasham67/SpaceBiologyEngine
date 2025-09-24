@@ -1,9 +1,10 @@
+import os
+
+import uvicorn
+from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-import os
-import uvicorn
 
-from dotenv import load_dotenv
 load_dotenv()
 
 app = FastAPI()
@@ -19,7 +20,42 @@ app.add_middleware(
 
 @app.get("/")
 def read_root():
-    return {"message": "Hello from FastAPI"}
+    return {"message": "Hello from FastAPI", "status": "SpaceBio Engine Backend is running!"}
+
+@app.get("/api/research/stats")
+def get_research_stats():
+    """Get sample research statistics for the dashboard"""
+    return {
+        "total_publications": 1847,
+        "active_researchers": 342,
+        "ongoing_projects": 28,
+        "space_missions_covered": 15,
+        "latest_research": [
+            {
+                "title": "Microgravity Effects on Plant Growth",
+                "author": "Dr. Sarah Chen",
+                "date": "2025-09-20",
+                "category": "Plant Biology"
+            },
+            {
+                "title": "Human Cardiovascular Adaptation in Space",
+                "author": "Dr. Michael Rodriguez",
+                "date": "2025-09-18",
+                "category": "Human Health"
+            },
+            {
+                "title": "Radiation Shielding for Mars Missions",
+                "author": "Dr. Elena Kowalski",
+                "date": "2025-09-15",
+                "category": "Space Medicine"
+            }
+        ]
+    }
+
+@app.get("/api/health")
+def health_check():
+    """Health check endpoint"""
+    return {"status": "healthy", "service": "SpaceBio Engine API"}
 
 
 if __name__ == "__main__":
