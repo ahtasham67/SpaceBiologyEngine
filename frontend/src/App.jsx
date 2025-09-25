@@ -4,10 +4,11 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 import HomePage from './pages/HomePage'
+import DigitalTwinViewer from './pages/DigitalTwin'
 
 function App() {
   return (
-    <HomePage />
+    <DigitalTwinViewer />
   )
 }
 
