@@ -1,4 +1,5 @@
 import React from "react";
+import Chatbot from "./Chatbot";
 
 function HomePage() {
   return (
@@ -86,6 +87,7 @@ function HomePage() {
       </section>
 
       {/* Footer */}
+       <Chatbot />
       <footer className="bg-gray-900 py-8 text-center text-gray-400">
         © 2025 SpaceBio Engine. All rights reserved.
       </footer>
