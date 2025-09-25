@@ -1,23 +1,9 @@
 import { useState } from "react";
 
+import bodyParts from "../utils/bodyInfo";
+
 export default function DigitalTwinViewer() {
   const [selectedPart, setSelectedPart] = useState(null);
-
-  // Anatomical data with space-related effects
-  const bodyParts = {
-    "Brain": "Experiences fluid shifts, radiation exposure, and altered sleep cycles in microgravity.",
-    "Lungs": "Reduced lung capacity and altered breathing patterns due to fluid redistribution.",
-    "Heart": "Cardiovascular deconditioning and reduced blood volume in space environment.",
-    "Liver": "Metabolic changes and altered drug processing in microgravity conditions.",
-    "Kidneys": "Increased risk of kidney stones and altered fluid regulation in space.",
-    "Stomach": "Digestive issues and altered nutrient absorption in microgravity.",
-    "Left Arm": "Muscle atrophy and bone density loss due to lack of gravity resistance.",
-    "Right Arm": "Muscle atrophy and bone density loss due to lack of gravity resistance.",
-    "Reproductive System": "Hormonal changes and potential fertility effects from radiation exposure.",
-    "Left Leg": "Significant muscle and bone mass loss, especially in weight-bearing bones.",
-    "Right Leg": "Significant muscle and bone mass loss, especially in weight-bearing bones.",
-    "Eyes": "Vision changes and increased intracranial pressure affecting eyesight in space."
-  };
 
   return (
     <div className="relative w-full h-screen bg-gradient-to-b from-gray-900 to-black flex flex-col items-center justify-center p-4">
@@ -95,6 +81,14 @@ export default function DigitalTwinViewer() {
           title="Stomach"
         ></button>
 
+        <button
+          onClick={() => setSelectedPart("Pelvis")}
+          style={{ transform: 'rotate(0deg)', width: '125px' , height: '96px' }}
+          className="absolute top-[40%] left-[30.5%] rounded-full bg-yellow-600/60 hover:bg-yellow-600 transition-all duration-300 hover:scale-110 border-2 border-yellow-500/50 hover:border-yellow-500"
+          title="Pelvis"
+        ></button>
+
+
         {/* Kidneys */}
         <button
           onClick={() => setSelectedPart("Kidneys")}
@@ -110,11 +104,12 @@ export default function DigitalTwinViewer() {
         ></button>
 
         <button
-          onClick={() => setSelectedPart("Kidneys")}
+          onClick={() => setSelectedPart("Intestines")}
           style={{ transform: 'rotate(0deg)', width: '98px' , height: '75px' }}
           className="absolute top-[40.5%] left-[33%] rounded-3xl bg-yellow-600/60 hover:bg-yellow-600 transition-all duration-300 hover:scale-110 border-2 border-yellow-500/50 hover:border-yellow-500"
           title="Intestines"
         ></button>
+        
 
         {/* Reproductive System */}
         <button
@@ -177,6 +172,36 @@ export default function DigitalTwinViewer() {
           className="absolute top-[72%] left-[35%] w-6 rounded-full bg-blue-400/60 hover:bg-blue-400 transition-all duration-300 hover:scale-105 border-2 border-blue-300/50 hover:border-blue-300"
           title="Left Leg"
         ></button>
+
+        {/* DNA Icon */}
+        <button
+          onClick={() => setSelectedPart("DNA")}
+          className="absolute top-[10%] left-[10%] w-8 h-8 bg-emerald-500/70 hover:bg-emerald-500 transition-all duration-300 hover:scale-110 border-2 border-emerald-400/50 hover:border-emerald-400 flex items-center justify-center"
+          style={{ borderRadius: '50%' }}
+          title="DNA & Genetics"
+        >
+          <span className="text-white text-xs font-bold">🧬</span>
+        </button>
+
+        {/* Shield Icon (Immune System) */}
+        <button
+          onClick={() => setSelectedPart("Immune System")}
+          className="absolute top-[15%] left-[10%] w-8 h-8 bg-indigo-500/70 hover:bg-indigo-500 transition-all duration-300 hover:scale-110 border-2 border-indigo-400/50 hover:border-indigo-400 flex items-center justify-center"
+          style={{ borderRadius: '50%' }}
+          title="Immune System"
+        >
+          <span className="text-white text-xs font-bold">🛡️</span>
+        </button>
+
+        {/* Skin Icon */}
+        <button
+          onClick={() => setSelectedPart("Skin")}
+          className="absolute top-[5%] left-[10%] w-8 h-8 bg-rose-500/70 hover:bg-rose-500 transition-all duration-300 hover:scale-110 border-2 border-rose-400/50 hover:border-rose-400 flex items-center justify-center"
+          style={{ borderRadius: '50%' }}
+          title="Skin & Tissue"
+        >
+          <span className="text-white text-xs font-bold">🫧</span>
+        </button>
       </div>
 
       {/* Enhanced Modal */}
