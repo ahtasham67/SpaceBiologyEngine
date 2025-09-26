@@ -1,27 +1,89 @@
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-import os
-import uvicorn
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel, EmailStr
+from supabase import create_client, Client
+from typing import Optional, List
 
-from dotenv import load_dotenv
-load_dotenv()
+import os
+
+# -----------------------------
+# Supabase credentials
+# -----------------------------
+SUPABASE_URL = "https://kkatmfvuomnsyrqoyflf.supabase.co"
+SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtrYXRtZnZ1b21uc3lycW95ZmxmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg5MTM2NzUsImV4cCI6MjA3NDQ4OTY3NX0.NTatWz9h1v6HtPbkBqlcqoPwo0w25D-VROekJ1X_Lro"
+
+supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 app = FastAPI()
 
-# Allow CORS for frontend
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # Vite default dev server
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# -----------------------------
+# Pydantic schemas
+# -----------------------------
+class User(BaseModel):
+    username: str
+    email: EmailStr
 
-@app.get("/")
-def read_root():
-    return {"message": "Hello from FastAPI"}
+class ChatSession(BaseModel):
+    user_id: int
 
+class Message(BaseModel):
+    session_id: int
+    sender: str
+    message: str
 
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8000))  # default 8000 if not set
-    uvicorn.run(app, host="0.0.0.0", port=port)
+# -----------------------------
+# Users endpoints
+# -----------------------------
+@app.post("/add_user")
+async def add_user(user: User):
+    try:
+        response = supabase.table("users").insert({
+            "username": user.username,
+            "email": user.email
+        }).execute()  # returns APIResponse
+
+        # Just return the data
+        return {"success": True, "data": response.data}
+
+    except Exception as e:
+        # If anything fails, FastAPI will return 500 with this message
+        raise HTTPException(status_code=500, detail=str(e))
+# -----------------------------
+# Chat session endpoints
+# -----------------------------
+@app.post("/start_session")
+async def start_session(session: ChatSession):
+    try:
+        response = supabase.table("chat_sessions").insert({
+            "user_id": session.user_id  # integer ID, no str()
+        }).execute()
+
+        return {"success": True, "data": response.data}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+# -----------------------------
+# Messages endpoints
+# -----------------------------
+@app.post("/send_message")
+async def send_message(message: Message):
+    try:
+        response = supabase.table("messages").insert({
+            "session_id": message.session_id,  # integer ID
+            "sender": message.sender,
+            "message": message.message
+        }).execute()
+
+        return {"success": True, "data": response.data}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/get_messages/{session_id}")
+async def get_messages(session_id: int):
+    try:
+        response = supabase.table("messages").select("*").eq("session_id", session_id).execute()
+        return {"success": True, "messages": response.data}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
