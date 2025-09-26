@@ -1,15 +1,18 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import "./App.css";
 
-import HomePage from './pages/HomePage'
-import DigitalTwinViewer from './pages/DigitalTwin'
+import DigitalTwinViewer from "./pages/DigitalTwin";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
-    <DigitalTwinViewer />
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/digital-twin" element={<DigitalTwinViewer />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;

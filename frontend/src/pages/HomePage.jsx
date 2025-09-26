@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function HomePage() {
   return (
     <div className="min-h-screen bg-slate-900 text-white relative overflow-hidden">
@@ -40,7 +42,10 @@ function HomePage() {
         </div>
         <ul className="hidden md:flex gap-8 text-gray-300 space-font">
           <li className="hover:text-blue-400 cursor-pointer transition-all duration-300 hover:scale-105">
-            Home
+            <Link to="/">Home</Link>
+          </li>
+          <li className="hover:text-blue-400 cursor-pointer transition-all duration-300 hover:scale-105">
+            <Link to="/digital-twin">Digital Twin</Link>
           </li>
           <li className="hover:text-blue-400 cursor-pointer transition-all duration-300 hover:scale-105">
             Research
@@ -75,19 +80,21 @@ function HomePage() {
 
         {/* Research Areas Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
-          <div className="space-card rounded-xl p-8 float-animation">
-            <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center mb-6 cosmic-glow mx-auto">
-              <span className="text-4xl">🔗</span>
+          <Link to="/digital-twin" className="block">
+            <div className="space-card rounded-xl p-8 float-animation cursor-pointer hover:scale-105 transition-transform duration-300">
+              <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center mb-6 cosmic-glow mx-auto">
+                <span className="text-4xl">🔗</span>
+              </div>
+              <h3 className="text-2xl font-bold mb-4 text-white text-center space-font cosmic-text">
+                Digital Twinning
+              </h3>
+              <p className="text-gray-300 leading-relaxed text-center">
+                Explore the cutting-edge realm of digital twinning in space
+                biology, where virtual models mirror biological systems to
+                unlock cosmic mysteries.
+              </p>
             </div>
-            <h3 className="text-2xl font-bold mb-4 text-white text-center space-font cosmic-text">
-              Digital Twinning
-            </h3>
-            <p className="text-gray-300 leading-relaxed text-center">
-              Explore the cutting-edge realm of digital twinning in space
-              biology, where virtual models mirror biological systems to unlock
-              cosmic mysteries.
-            </p>
-          </div>
+          </Link>
 
           <div
             className="space-card rounded-xl p-8 float-animation"
@@ -134,9 +141,12 @@ function HomePage() {
             mission preparations.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <button className="space-button bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white px-10 py-4 rounded-lg font-bold text-lg transition-all duration-300 cosmic-glow space-font">
-              🚀 Explore Research
-            </button>
+            <Link
+              to="/digital-twin"
+              className="space-button bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white px-10 py-4 rounded-lg font-bold text-lg transition-all duration-300 cosmic-glow space-font text-center"
+            >
+              🚀 Explore Digital Twin
+            </Link>
             <button className="space-button border-2 border-blue-500 hover:bg-blue-500/10 text-blue-400 hover:text-white px-10 py-4 rounded-lg font-bold text-lg transition-all duration-300 space-font">
               🌌 Learn More
             </button>

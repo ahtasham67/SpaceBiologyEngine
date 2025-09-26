@@ -1,6 +1,6 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
-import bodyParts from "../utils/bodyInfo";
 import OrganModal from "../components/OrganModal";
 
 export default function DigitalTwinViewer() {
@@ -8,8 +8,20 @@ export default function DigitalTwinViewer() {
 
   return (
     <div className="relative w-full h-screen bg-gradient-to-b from-gray-900 to-black flex flex-col items-center justify-center p-4">
-      <h1 className="text-3xl font-bold text-white mb-6">Human Body in Space - Digital Twin</h1>
-      
+      {/* Navigation */}
+      <div className="absolute top-4 left-4">
+        <Link
+          to="/"
+          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors flex items-center gap-2"
+        >
+          ← Back to Home
+        </Link>
+      </div>
+
+      <h1 className="text-3xl font-bold text-white mb-6">
+        Human Body in Space - Digital Twin
+      </h1>
+
       <div className="relative w-80 max-w-sm">
         <img
           src="/anatomy.jpg"
@@ -21,34 +33,42 @@ export default function DigitalTwinViewer() {
         <button
           onClick={() => setSelectedPart("Brain")}
           className="absolute top-[2%] left-[41%] w-16 h-10 bg-pink-400/60 hover:bg-pink-400 transition-all duration-300 hover:scale-110 border-2 border-pink-300/50 hover:border-pink-300"
-          style={{ borderRadius: '1000px' }}
+          style={{ borderRadius: "1000px" }}
           title="Brain"
         ></button>
 
         <button
           onClick={() => setSelectedPart("Eyes")}
           className="absolute top-[6.8%] left-[41%] w-5 h-4 rounded-full bg-pink-400/60 hover:bg-pink-400 transition-all duration-300 hover:scale-110 border-2 border-pink-300/50 hover:border-pink-300"
-          style={{ borderRadius: '1000px' }}
+          style={{ borderRadius: "1000px" }}
           title="Eyes"
         ></button>
 
         <button
           onClick={() => setSelectedPart("Eyes")}
           className="absolute top-[6.8%] left-[52%] w-5 h-4 rounded-full bg-pink-400/60 hover:bg-pink-400 transition-all duration-300 hover:scale-110 border-2 border-pink-300/50 hover:border-pink-300"
-          style={{ borderRadius: '1000px' }}
+          style={{ borderRadius: "1000px" }}
           title="Eyes"
         ></button>
 
         {/* Lungs */}
         <button
           onClick={() => setSelectedPart("Lungs")}
-          style={{ height: '78px', borderRadius: '50px' ,transform: 'rotate(7deg)'}}
+          style={{
+            height: "78px",
+            borderRadius: "50px",
+            transform: "rotate(7deg)",
+          }}
           className="absolute top-[21.5%] left-[34%] w-9 rounded-lg bg-cyan-400/60 hover:bg-cyan-400 transition-all duration-300 hover:scale-105 border-2 border-cyan-300/50 hover:border-cyan-300"
           title="Lungs"
         ></button>
         <button
           onClick={() => setSelectedPart("Lungs")}
-          style={{ height: '78px', borderRadius: '50px' ,transform: 'rotate(-13deg)'}}
+          style={{
+            height: "78px",
+            borderRadius: "50px",
+            transform: "rotate(-13deg)",
+          }}
           className="absolute top-[21.5%] left-[56%] w-9 rounded-lg bg-cyan-400/60 hover:bg-cyan-400 transition-all duration-300 hover:scale-105 border-2 border-cyan-300/50 hover:border-cyan-300"
           title="Lungs"
         ></button>
@@ -56,7 +76,7 @@ export default function DigitalTwinViewer() {
         {/* Heart */}
         <button
           onClick={() => setSelectedPart("Heart")}
-          style={{  borderRadius: '50px' ,transform: 'rotate(-8deg)'}}
+          style={{ borderRadius: "50px", transform: "rotate(-8deg)" }}
           className="absolute top-[26%] left-[47%] w-8 h-11 rounded-full bg-red-500/60 hover:bg-red-500 transition-all duration-300 hover:scale-110 border-2 border-red-400/50 hover:border-red-400"
           title="Heart"
         ></button>
@@ -64,7 +84,7 @@ export default function DigitalTwinViewer() {
         {/* Liver */}
         <button
           onClick={() => setSelectedPart("Liver")}
-          style={{ transform: 'rotate(-19deg)', width: '70px' }}
+          style={{ transform: "rotate(-19deg)", width: "70px" }}
           className="absolute top-[31.5%] left-[32%] h-9 rounded-lg bg-amber-600/60 hover:bg-amber-600 transition-all duration-300 hover:scale-105 border-2 border-amber-500/50 hover:border-amber-500"
           title="Liver"
         ></button>
@@ -77,40 +97,38 @@ export default function DigitalTwinViewer() {
         ></button>
         <button
           onClick={() => setSelectedPart("Stomach")}
-          style={{ transform: 'rotate(70deg)', height: '62px' }}
+          style={{ transform: "rotate(70deg)", height: "62px" }}
           className="absolute top-[32.5%] left-[50%] w-6 rounded-full bg-orange-500/60 hover:bg-orange-500 transition-all duration-300 hover:scale-110 border-2 border-orange-400/50 hover:border-orange-400"
           title="Stomach"
         ></button>
 
         <button
           onClick={() => setSelectedPart("Pelvis")}
-          style={{ transform: 'rotate(0deg)', width: '125px' , height: '96px' }}
+          style={{ transform: "rotate(0deg)", width: "125px", height: "96px" }}
           className="absolute top-[40%] left-[30.5%] rounded-full bg-yellow-600/60 hover:bg-yellow-600 transition-all duration-300 hover:scale-110 border-2 border-yellow-500/50 hover:border-yellow-500"
           title="Pelvis"
         ></button>
 
-
         {/* Kidneys */}
         <button
           onClick={() => setSelectedPart("Kidneys")}
-          style={{ transform: 'rotate(10deg)' }}
+          style={{ transform: "rotate(10deg)" }}
           className="absolute top-[37%] left-[38%] w-4 h-9 rounded-full bg-yellow-600/60 hover:bg-yellow-600 transition-all duration-300 hover:scale-110 border-2 border-yellow-500/50 hover:border-yellow-500"
           title="Left Kidney"
         ></button>
         <button
           onClick={() => setSelectedPart("Kidneys")}
-          style={{ transform: 'rotate(-10deg)' }}
+          style={{ transform: "rotate(-10deg)" }}
           className="absolute top-[37%] left-[58%] w-4 h-9 rounded-full bg-yellow-600/60 hover:bg-yellow-600 transition-all duration-300 hover:scale-110 border-2 border-yellow-500/50 hover:border-yellow-500"
           title="Right Kidney"
         ></button>
 
         <button
           onClick={() => setSelectedPart("Intestines")}
-          style={{ transform: 'rotate(0deg)', width: '98px' , height: '75px' }}
+          style={{ transform: "rotate(0deg)", width: "98px", height: "75px" }}
           className="absolute top-[40.5%] left-[33%] rounded-3xl bg-yellow-600/60 hover:bg-yellow-600 transition-all duration-300 hover:scale-110 border-2 border-yellow-500/50 hover:border-yellow-500"
           title="Intestines"
         ></button>
-        
 
         {/* Reproductive System */}
         <button
@@ -122,26 +140,26 @@ export default function DigitalTwinViewer() {
         {/* Arms */}
         <button
           onClick={() => setSelectedPart("Left Arm")}
-          style={{ transform: 'rotate(3deg)'  , height: '100px' }}
+          style={{ transform: "rotate(3deg)", height: "100px" }}
           className="absolute top-[22%] left-[21%] w-5 rounded-full bg-green-400/60 hover:bg-green-400 transition-all duration-300 hover:scale-105 border-2 border-green-300/50 hover:border-green-300"
           title="Left Arm"
         ></button>
 
         <button
           onClick={() => setSelectedPart("Right Arm")}
-          style={{ transform: 'rotate(10deg)'  , height: '150px' }}
+          style={{ transform: "rotate(10deg)", height: "150px" }}
           className="absolute top-[35%] left-[15%] w-5 rounded-full bg-green-400/60 hover:bg-green-400 transition-all duration-300 hover:scale-105 border-2 border-green-300/50 hover:border-green-300"
           title="Left Arm"
         ></button>
         <button
           onClick={() => setSelectedPart("Right Arm")}
-          style={{ transform: 'rotate(-3deg)'  , height: '100px' }}
+          style={{ transform: "rotate(-3deg)", height: "100px" }}
           className="absolute top-[22%] left-[75%] w-5 rounded-full bg-green-400/60 hover:bg-green-400 transition-all duration-300 hover:scale-105 border-2 border-green-300/50 hover:border-green-300"
           title="Right Arm"
         ></button>
         <button
           onClick={() => setSelectedPart("Right Arm")}
-          style={{ transform: 'rotate(-9deg)'  , height: '150px' }}
+          style={{ transform: "rotate(-9deg)", height: "150px" }}
           className="absolute top-[35%] left-[80%] w-5 rounded-full bg-green-400/60 hover:bg-green-400 transition-all duration-300 hover:scale-105 border-2 border-green-300/50 hover:border-green-300"
           title="Right Arm"
         ></button>
@@ -149,27 +167,27 @@ export default function DigitalTwinViewer() {
         {/* Legs */}
         <button
           onClick={() => setSelectedPart("Left Leg")}
-          style={{ transform: 'rotate(-9deg)'  , height: '180px' }}
+          style={{ transform: "rotate(-9deg)", height: "180px" }}
           className="absolute top-[50%] left-[30%] w-6 rounded-full bg-blue-400/60 hover:bg-blue-400 transition-all duration-300 hover:scale-105 border-2 border-blue-300/50 hover:border-blue-300"
           title="Left Leg"
         ></button>
         <button
           onClick={() => setSelectedPart("Right Leg")}
-          style={{ transform: 'rotate(9deg)'  , height: '180px' }}
+          style={{ transform: "rotate(9deg)", height: "180px" }}
           className="absolute top-[50%] left-[62%] w-6 rounded-full bg-blue-400/60 hover:bg-blue-400 transition-all duration-300 hover:scale-105 border-2 border-blue-300/50 hover:border-blue-300"
           title="Right Leg"
         ></button>
 
-         <button
+        <button
           onClick={() => setSelectedPart("Right Leg")}
-          style={{ transform: 'rotate(2deg)'  , height: '180px' }}
+          style={{ transform: "rotate(2deg)", height: "180px" }}
           className="absolute top-[72%] left-[57%] w-6 rounded-full bg-blue-400/60 hover:bg-blue-400 transition-all duration-300 hover:scale-105 border-2 border-blue-300/50 hover:border-blue-300"
           title="Right Leg"
         ></button>
 
         <button
           onClick={() => setSelectedPart("Right Leg")}
-          style={{ transform: 'rotate(-2deg)'  , height: '180px' }}
+          style={{ transform: "rotate(-2deg)", height: "180px" }}
           className="absolute top-[72%] left-[35%] w-6 rounded-full bg-blue-400/60 hover:bg-blue-400 transition-all duration-300 hover:scale-105 border-2 border-blue-300/50 hover:border-blue-300"
           title="Left Leg"
         ></button>
@@ -178,7 +196,7 @@ export default function DigitalTwinViewer() {
         <button
           onClick={() => setSelectedPart("DNA")}
           className="absolute top-[10%] left-[10%] w-8 h-8 bg-emerald-500/70 hover:bg-emerald-500 transition-all duration-300 hover:scale-110 border-2 border-emerald-400/50 hover:border-emerald-400 flex items-center justify-center"
-          style={{ borderRadius: '50%' }}
+          style={{ borderRadius: "50%" }}
           title="DNA & Genetics"
         >
           <span className="text-white text-xs font-bold">🧬</span>
@@ -188,7 +206,7 @@ export default function DigitalTwinViewer() {
         <button
           onClick={() => setSelectedPart("Immune System")}
           className="absolute top-[15%] left-[10%] w-8 h-8 bg-indigo-500/70 hover:bg-indigo-500 transition-all duration-300 hover:scale-110 border-2 border-indigo-400/50 hover:border-indigo-400 flex items-center justify-center"
-          style={{ borderRadius: '50%' }}
+          style={{ borderRadius: "50%" }}
           title="Immune System"
         >
           <span className="text-white text-xs font-bold">🛡️</span>
@@ -198,16 +216,16 @@ export default function DigitalTwinViewer() {
         <button
           onClick={() => setSelectedPart("Skin")}
           className="absolute top-[5%] left-[10%] w-8 h-8 bg-rose-500/70 hover:bg-rose-500 transition-all duration-300 hover:scale-110 border-2 border-rose-400/50 hover:border-rose-400 flex items-center justify-center"
-          style={{ borderRadius: '50%' }}
+          style={{ borderRadius: "50%" }}
           title="Skin & Tissue"
         >
           <span className="text-white text-xs font-bold">🫧</span>
         </button>
       </div>
 
-      <OrganModal 
-        selectedPart={selectedPart} 
-        onClose={() => setSelectedPart(null)} 
+      <OrganModal
+        selectedPart={selectedPart}
+        onClose={() => setSelectedPart(null)}
       />
     </div>
   );
