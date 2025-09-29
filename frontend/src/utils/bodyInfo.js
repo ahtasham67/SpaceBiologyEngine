@@ -1,4 +1,4 @@
-const bodyParts = {
+export const bodyParts = {
     "Brain": "Experiences fluid shifts, radiation exposure, and altered sleep cycles in microgravity.",
     "Lungs": "Reduced lung capacity and altered breathing patterns due to fluid redistribution.",
     "Heart": "Cardiovascular deconditioning and reduced blood volume in space environment.",
@@ -19,4 +19,16 @@ const bodyParts = {
 
   };
 
-  export default bodyParts;
+
+export const effects =[
+    {
+      part: "Brain",
+      effect: "Experiences fluid shifts, radiation exposure, and altered sleep cycles in microgravity.",
+      source: "https://www.nasa.gov/mission_pages/station/research/benefits/brain.html"
+    },
+    {
+      part: "Lungs",
+      effect: "Reduced lung capacity and altered breathing patterns due to fluid redistribution.",
+      source: "https://www.nasa.gov/mission_pages/station/research/benefits/lungs.html"
+    }
+]
