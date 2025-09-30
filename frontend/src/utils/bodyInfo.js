@@ -33,6 +33,28 @@ export const effects =[
         effect: "Microgravity can lead to a decrease in lung volume and changes in the way air is distributed in the lungs.",
         source: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2923421/"
       }]
+    },
+
+    {
+      part : "Liver",
+      data: [
+        {
+        "effect": "Lipid dysregulation observed in mouse liver after multiple space missions.",
+        "source": "https://doi.org/10.1038/s41598-019-55869-2"
+      },
+        {
+        "effect": "Upregulation in transcriptomic pathways: lipid metabolism, fatty acid metabolism, lipid and fatty acid processing, lipid catabolism, and lipid localization.",
+        "source": "Beheshti et al. 2019, Sci Rep"  
+      },
+      {
+        "effect": "Changes in proteomic profiles: a number of lipid-related proteins altered during spaceflight (consistent with transcriptional changes).",
+        "source": "Beheshti et al. 2019, Sci Rep"  
+      },
+      {
+        "effect": "Predicted upstream regulators altered: e.g. Insulin (INS) activation, Glucagon (GCG) regulation (common across flight conditions).",
+        "source": "Beheshti et al. 2019, Sci Rep"  
+      } 
+      ]
     }
     ,
   {
@@ -106,6 +128,18 @@ export const effects =[
       {
         effect: "Space radiation could damage endothelial cells in blood vessels, potentially accelerating heart disease.",
         source: "https://www.bcm.edu/academic-centers/space-medicine/translational-research-institute/space-health-resources/how-the-body-changes-in-space"
+      },
+      {
+        "effect": "Space radiation (protons and heavy ions) triggers oxidative stress in cardiomyocytes and endothelial cells, activating the FYN signaling pathway as a protective mechanism against ROS.",
+        "source": "https://doi.org/10.3390/ijms20030661"
+      },
+      {
+        "effect": "Proton radiation effects overlap strongly with spaceflight samples, while heavy ion (56Fe) exposure showed distinct gene regulation patterns; both linked to long-term cardiovascular risk.",
+        "source": "https://doi.org/10.3390/ijms20030661"
+      },
+      {
+        "effect": "Radiation exposure led to altered DNA methylation, endothelial dysfunction, myocardial fibrosis, and vascular damage, all increasing cardiovascular disease risk.",
+        "source": "https://doi.org/10.3390/ijms20030661"
       }
     ]
   },
@@ -156,6 +190,33 @@ export const effects =[
       {
         effect: "Reduced immune response and microbial growth can cause skin irritation.",
         source: "https://www.bcm.edu/academic-centers/space-medicine/translational-research-institute/space-health-resources/how-the-body-changes-in-space"
+      }
+    ]
+  },
+  {
+    part: "Skin",
+    "data": [
+      {
+        effect: "Increased sensitivity, delayed wound healing, and potential radiation dermatitis from space exposure.",
+        source: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4303863/"
+      }
+    ]
+  },
+  {
+    part : "Reproductive System",
+    "data": [
+      
+      {
+        "effect": "Microgravity and radiation may impair gonadal function, estrous cycles, and fertility; animal studies show impaired blastocyst formation, DNA damage, and epigenetic abnormalities in embryos developed in space.",
+        "source": "https://doi.org/10.3390/ijms23137465"
+      },
+      {
+        "effect": "Pregnant rodents flown in space exhibited fetal neurobiological abnormalities and impaired bone development, although most offspring reached adulthood and reproduced.",
+        "source": "https://doi.org/10.3390/ijms23137465"
+      },
+      {
+        "effect": "Radiation sensitivity of ovaries may lead to temporary or permanent infertility; thresholds reported as 1250–1700 mGy for temporary effects and up to 20,000 mGy for permanent sterility.",
+        "source": "https://doi.org/10.3390/ijms23137465"
       }
     ]
   }
