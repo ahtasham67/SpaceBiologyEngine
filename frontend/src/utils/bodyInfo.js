@@ -83,6 +83,10 @@ export const effects =[
       {
         effect: "The process of depositing calcium into the bone matrix is significantly reduced.",
         source: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11166946"
+      },
+      {
+        effect: "Microgravity caused a ~70% decrease in trabecular bone volume and significant reductions in cortical bone thickness and area in mice. Lunar gravity (1/6 g) partially alleviated these effects but did not fully restore bone mass.",
+        source: "https://doi.org/10.1038/s41598-024-79315-0"
       }
     ]
   },
@@ -130,6 +134,10 @@ export const effects =[
       {
         effect: "Increased oxidative stress and mitochondrial dysfunction linked to muscle degradation.",
         source: "https://doi.org/10.1016/j.isci.2022.105213"
+      },
+      {
+        effect: "The regenerative capacity of muscle stem cells is reduced, hindering muscle repair and growth.",
+        source: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11166946"
       }
     ]
   },
@@ -380,6 +388,14 @@ export const effects =[
       },
       {
         effect: "The population and balance of microbes living in and on the body are altered.",
+        source: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11166946"
+      },
+      {
+        effect: "Spaceflight induces oxidative stress, DNA damage, mitochondrial dysfunction, epigenetic modifications, telomere length alterations, and microbiome shifts.",
+        source: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11166946"
+      },
+      {
+        effect: "Altered proteostasis and increased cellular senescence contribute to tissue dysfunction.",
         source: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11166946"
       }
     ]
