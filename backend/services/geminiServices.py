@@ -44,7 +44,7 @@ def analyze_image(image_path: str, prompt: str = "Describe this image") -> str:
     """Analyze an image and generate text description using Gemini Vision"""
     try:
         # Create a vision model
-        vision_model = genai.GenerativeModel('gemini-1.5-pro-vision-latest')
+        vision_model = genai.GenerativeModel('gemini-2.5-flash')
         
         # Read the image file
         with open(image_path, 'rb') as image_file:

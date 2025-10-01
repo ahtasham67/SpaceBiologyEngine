@@ -1,23 +1,23 @@
-export const bodyParts = {
-    "Brain": "Experiences fluid shifts, radiation exposure, and altered sleep cycles in microgravity.",
-    "Lungs": "Reduced lung capacity and altered breathing patterns due to fluid redistribution.",
-    "Heart": "Cardiovascular deconditioning and reduced blood volume in space environment.",
-    "Liver": "Metabolic changes and altered drug processing in microgravity conditions.",
-    "Kidneys": "Increased risk of kidney stones and altered fluid regulation in space.",
-    "Stomach": "Digestive issues and altered nutrient absorption in microgravity.",
-    "Left Arm": "Muscle atrophy and bone density loss due to lack of gravity resistance.",
-    "Right Arm": "Muscle atrophy and bone density loss due to lack of gravity resistance.",
-    "Reproductive System": "Hormonal changes and potential fertility effects from radiation exposure.",
-    "Left Leg": "Significant muscle and bone mass loss, especially in weight-bearing bones.",
-    "Right Leg": "Significant muscle and bone mass loss, especially in weight-bearing bones.",
-    "Eyes": "Vision changes and increased intracranial pressure affecting eyesight in space.",
-    "DNA": "Genetic mutations and chromosomal damage from cosmic radiation exposure during long-duration spaceflight.",
-    "Immune System": "Weakened immune response and increased susceptibility to infections in microgravity environment.",
-    "Skin": "Increased sensitivity, delayed wound healing, and potential radiation dermatitis from space exposure.",
-    "Intestines": "Altered gut microbiome and digestive function due to microgravity and stress.",
-    "Pelvis": "Bone density loss and muscle atrophy affecting pelvic stability and function."
+// export const bodyParts = {
+//     "Brain": "Experiences fluid shifts, radiation exposure, and altered sleep cycles in microgravity.",
+//     "Lungs": "Reduced lung capacity and altered breathing patterns due to fluid redistribution.",
+//     "Heart": "Cardiovascular deconditioning and reduced blood volume in space environment.",
+//     "Liver": "Metabolic changes and altered drug processing in microgravity conditions.",
+//     "Kidneys": "Increased risk of kidney stones and altered fluid regulation in space.",
+//     "Stomach": "Digestive issues and altered nutrient absorption in microgravity.",
+//     "Left Arm": "Muscle atrophy and bone density loss due to lack of gravity resistance.",
+//     "Right Arm": "Muscle atrophy and bone density loss due to lack of gravity resistance.",
+//     "Reproductive System": "Hormonal changes and potential fertility effects from radiation exposure.",
+//     "Left Leg": "Significant muscle and bone mass loss, especially in weight-bearing bones.",
+//     "Right Leg": "Significant muscle and bone mass loss, especially in weight-bearing bones.",
+//     "Eyes": "Vision changes and increased intracranial pressure affecting eyesight in space.",
+//     "DNA": "Genetic mutations and chromosomal damage from cosmic radiation exposure during long-duration spaceflight.",
+//     "Immune System": "Weakened immune response and increased susceptibility to infections in microgravity environment.",
+//     "Skin": "Increased sensitivity, delayed wound healing, and potential radiation dermatitis from space exposure.",
+//     "Intestines": "Altered gut microbiome and digestive function due to microgravity and stress.",
+//     "Pelvis": "Bone density loss and muscle atrophy affecting pelvic stability and function."
 
-  };
+//   };
 
 
 export const effects =[
@@ -87,6 +87,22 @@ export const effects =[
       {
         effect: "Microgravity caused a ~70% decrease in trabecular bone volume and significant reductions in cortical bone thickness and area in mice. Lunar gravity (1/6 g) partially alleviated these effects but did not fully restore bone mass.",
         source: "https://doi.org/10.1038/s41598-024-79315-0"
+      },
+      {
+        effect: "Microgravity caused a 6.3% decrease in pelvic bone volume fraction and 11.9% decrease in bone thickness after 15 days in mice.",
+        source: "https://doi.org/10.1371/journal.pone.0061372"
+      },
+      {
+        effect: "Osteoclast numbers increased by 197% and osteoclast-covered trabecular bone surfaces increased by 154%, indicating strong osteoclastic resorption.",
+        source: "https://doi.org/10.1371/journal.pone.0061372"
+      },
+      {
+        effect: "Osteocyte lacunae showed enlargement (+17% area, +14% perimeter) and increased canalicular diameter (+6%), consistent with osteocytic osteolysis.",
+        source: "https://doi.org/10.1371/journal.pone.0061372"
+      },
+      {
+        effect: "TRAP-positive osteocytes increased (34.4% vs 20.9% in controls), suggesting osteocyte-mediated bone resorption, while empty lacunae showed no increase (no evidence of osteocyte apoptosis).",
+        source: "https://doi.org/10.1371/journal.pone.0061372"
       }
     ]
   },
@@ -151,6 +167,22 @@ export const effects =[
       {
         effect: "Returning to Earth can lead to balance issues, difficulty walking, and gaze stabilization problems.",
         source: "https://www.bcm.edu/academic-centers/space-medicine/translational-research-institute/space-health-resources/how-the-body-changes-in-space"
+      },
+      {
+        effect: "Space microgravity increased abnormal cell divisions in neural stem cells, including incomplete cytokinesis (ICD) and multi-daughter cell division (MDCD).",
+        source: "https://doi.org/10.3390/ijms232214320"
+      },
+      {
+        effect: "NSCs exposed to space microgravity showed enhanced proliferation, hypertrophy, hyperplasia, and abnormal division, increasing potential cancer risk.",
+        source: "https://doi.org/10.3390/ijms232214320"
+      },
+      {
+        effect: "Secretome produced by space-flown NSCs induced similar abnormal divisions in naïve NSCs, suggesting that secreted molecules (e.g., SPARC protein) mediate these effects rather than mechanical forces alone.",
+        source: "https://doi.org/10.3390/ijms232214320"
+      },
+      {
+        effect: "SPARC protein, upregulated under microgravity, may act as a gravity-sensor in neural stem cells and contribute to cancer-like behaviors.",
+        source: "https://doi.org/10.3390/ijms232214320"
       }
     ]
   },
@@ -397,6 +429,52 @@ export const effects =[
       {
         effect: "Altered proteostasis and increased cellular senescence contribute to tissue dysfunction.",
         source: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11166946"
+      },
+      {
+        effect: "Bone morphogenetic protein BMP4 (-1.99 fold) and TGF-β2 (-1.59 fold) were downregulated, indicating suppression of osteogenesis.",
+        source: "https://doi.org/10.1371/journal.pone.0061372"
+      },
+      {
+        effect: "Other growth and differentiation genes altered included downregulation of Egr1 (-2.3 fold), Myod1 (-1.6 fold), and Sox9 (-2.3 fold), and upregulation of Twist1 (+1.8 fold) and Vdr (+2.8 fold).",
+        source: "https://doi.org/10.1371/journal.pone.0061372"
+      },
+       {
+        effect: "CDKN1a/p21 was upregulated 3.3 fold in osteoblasts and muscle fibers, suggesting inhibition of osteoblast proliferation and a systemic cell cycle arrest.",
+        source: "https://doi.org/10.1371/journal.pone.0061372"
+      },
+      {
+        effect: "Trp53 (p53) was downregulated (-1.54 fold) and showed no strong protein expression, indicating suppression of apoptosis signaling.",
+        source: "https://doi.org/10.1371/journal.pone.0061372"
+      },
+      {
+        effect: "Genes associated with apoptosis (Cradd, Dapk1, Fbxo3, Hecw2) were upregulated, but without evidence of increased osteocyte death.",
+        source: "https://doi.org/10.1371/journal.pone.0061372"
+      }
+    ]
+  },
+  {
+    part: "Thymus",
+    data: [
+      {
+        effect: "Microgravity induced thymic atrophy and downregulated cell-cycle–related genes. Partial gravity (1/6 g) alleviated thymic weight loss but was insufficient to fully restore gene expression patterns.",
+        source: "https://doi.org/10.1038/s41598-024-79315-0"
+      },
+      {
+        effect: "Clustered gene expression analysis suggested microgravity altered cell migration and cell cycle regulation, contributing to thymic atrophy.",
+        source: "https://doi.org/10.1038/s41598-024-79315-0"
+      }
+    ]
+  },
+  {
+    part: "Spleen",
+    data: [
+      {
+        effect: "Microgravity downregulated erythrocyte-related genes (regulated by Gata1 and Tal1), contributing to anemia during spaceflight. Partial gravity (1/6 g) partially alleviated these changes.",
+        source: "https://doi.org/10.1038/s41598-024-79315-0"
+      },
+      {
+        effect: "Microgravity altered inflammatory response–related genes in the spleen, while 1/6 g showed partial recovery of normal expression patterns.",
+        source: "https://doi.org/10.1038/s41598-024-79315-0"
       }
     ]
   }
