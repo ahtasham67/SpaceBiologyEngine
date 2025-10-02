@@ -1,8 +1,20 @@
+import React from "react";
 import { Link } from "react-router-dom";
+import Chatbot from "./Chatbot";
+import { Link, useNavigate } from "react-router-dom";
+import { useUser } from "../UserContext.jsx";
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
 
 function HomePage() {
+  const { user, setUser } = useUser();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    setUser(null);
+    navigate("/");
+  };
+
   return (
     <div className="min-h-screen bg-slate-900 text-white relative overflow-hidden">
       {/* Stellar background */}
@@ -31,6 +43,45 @@ function HomePage() {
           style={{ animationDelay: "1.5s" }}
         ></div>
       </div>
+      <div className="flex justify-center md:justify-start gap-4 mt-6 px-6 md:px-24">
+        {user ? (
+          <>
+            <button className="bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold cursor-default">
+              {user.username}
+            </button>
+            <button
+              onClick={handleLogout}
+              className="bg-gray-700 hover:bg-red-600 text-white px-6 py-3 rounded-lg font-semibold"
+            >
+              Logout
+            </button>
+            <Link to="/open">
+              <button className="border border-gray-400 hover:border-white px-6 py-3 rounded-lg font-semibold">
+                Chat with Bot
+              </button>
+            </Link>
+          </>
+        ) : (
+          <>
+            <Link to="/login">
+              <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold">
+                Login
+              </button>
+            </Link>
+            <Link to="/signup">
+              <button className="bg-blue-400 hover:bg-blue-500 text-white px-6 py-3 rounded-lg font-semibold">
+                Create Account
+              </button>
+            </Link>
+            <Link to="/open">
+              <button className="border border-gray-400 hover:border-white px-6 py-3 rounded-lg font-semibold">
+                Chat with Bot
+              </button>
+            </Link>
+          </>
+        )}
+      </div>
+
 
       {/* Navbar */}
       <Navbar />
