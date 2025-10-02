@@ -1,9 +1,7 @@
-import React from "react";
-import Chatbot from "./Chatbot";
 import { Link, useNavigate } from "react-router-dom";
 import { useUser } from "../UserContext.jsx";
-import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
+import Navbar from "../components/Navbar.jsx";
 
 function HomePage() {
   const { user, setUser } = useUser();
@@ -43,11 +41,9 @@ function HomePage() {
         ></div>
       </div>
 
-
       {/* Navbar */}
       <Navbar />
-      
-     
+
       {/* Main Content */}
       <main className="relative z-10 max-w-7xl mx-auto px-6 py-20">
         {/* Hero Section */}
@@ -85,22 +81,24 @@ function HomePage() {
             </div>
           </Link>
 
-          <div
-            className="space-card rounded-xl p-8 float-animation"
-            style={{ animationDelay: "0.5s" }}
-          >
-            <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center mb-6 cosmic-glow mx-auto">
-              <span className="text-4xl">📚</span>
+          <Link to="/publications" className="block">
+            <div
+              className="space-card rounded-xl p-8 float-animation cursor-pointer hover:scale-105 transition-transform duration-300"
+              style={{ animationDelay: "0.5s" }}
+            >
+              <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center mb-6 cosmic-glow mx-auto">
+                <span className="text-4xl">📚</span>
+              </div>
+              <h3 className="text-2xl font-bold mb-4 text-white text-center space-font cosmic-text">
+                Space Biology Publications
+              </h3>
+              <p className="text-gray-300 leading-relaxed text-center">
+                Access comprehensive research publications covering microgravity
+                biology, astrobiology, and life sciences from space missions
+                worldwide.
+              </p>
             </div>
-            <h3 className="text-2xl font-bold mb-4 text-white text-center space-font cosmic-text">
-              Space Biology Publications
-            </h3>
-            <p className="text-gray-300 leading-relaxed text-center">
-              Access comprehensive research publications covering microgravity
-              biology, astrobiology, and life sciences from space missions
-              worldwide.
-            </p>
-          </div>
+          </Link>
 
           <div
             className="space-card rounded-xl p-8 float-animation"
