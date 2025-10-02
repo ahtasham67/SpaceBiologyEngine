@@ -1,13 +1,19 @@
 import os
 
+from services.geminiServices import generate_text
 import uvicorn
 from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
 
 load_dotenv()
 
 app = FastAPI()
+
+# Pydantic model for request body
+class ConceptRequest(BaseModel):
+    concept: str
 
 # Allow CORS for frontend
 app.add_middleware(
@@ -57,6 +63,17 @@ def health_check():
     """Health check endpoint"""
     return {"status": "healthy", "service": "SpaceBio Engine API"}
 
+
+@app.post("/api/explain")
+def explain_concept(request: ConceptRequest):
+    """Explain a biological concept related to space biology"""
+    concept = request.concept
+    prompt = f"""system prompt : donot use ** * etc. be concise and precise. explain in easy words  
+    user prompt : 
+    {concept}"""
+    explanation = generate_text(prompt)
+    # explanation = "Space biology is the study of how living organisms adapt to the conditions of space, including microgravity, radiation, and isolation. It encompasses research on human physiology, plant growth, microbial behavior, and animal biology in space environments. Understanding these effects is crucial for long-duration space missions and the health of astronauts."
+    return {"concept": prompt, "explanation": explanation}
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8000))  # default 8000 if not set

@@ -20,20 +20,22 @@
 //   };
 
 
-export const effects =[
-    
+export const effects ={
+
+  "Lungs": 
     {
       part: "Lungs",
       data : [{
         effect: "Reduced lung capacity and altered breathing patterns due to fluid redistribution.",
-        source: "https://www.nasa.gov/mission_pages/station/research/benefits/lungs.html"
+        source: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11166946/"
       },
       
       {
         effect: "Microgravity can lead to a decrease in lung volume and changes in the way air is distributed in the lungs.",
-        source: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2923421/"
+        source: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11166946/"
       }]
     },
+  "Liver":
 
     {
       part : "Liver",
@@ -69,6 +71,18 @@ export const effects =[
       ]
     }
     ,
+
+    "Pelvis":
+    {
+      part: "Pelvis",
+      data: [
+        {
+        effect: "Microgravity caused a 6.3% decrease in pelvic bone volume fraction and 11.9% decrease in bone thickness after 15 days in mice. That might be equivalent to a 1.2% bone loss per month in humans.",
+        source: "https://doi.org/10.1371/journal.pone.0061372"
+      }]
+    }
+    ,
+  "Bones":
   {
     part: "Bones",
     data: [
@@ -89,10 +103,6 @@ export const effects =[
         source: "https://doi.org/10.1038/s41598-024-79315-0"
       },
       {
-        effect: "Microgravity caused a 6.3% decrease in pelvic bone volume fraction and 11.9% decrease in bone thickness after 15 days in mice.",
-        source: "https://doi.org/10.1371/journal.pone.0061372"
-      },
-      {
         effect: "Osteoclast numbers increased by 197% and osteoclast-covered trabecular bone surfaces increased by 154%, indicating strong osteoclastic resorption.",
         source: "https://doi.org/10.1371/journal.pone.0061372"
       },
@@ -106,6 +116,7 @@ export const effects =[
       }
     ]
   },
+  "Kidneys":
   {
     part: "Kidneys",
     data: [
@@ -120,6 +131,7 @@ export const effects =[
       }
     ]
   },
+  "Muscles":
   {
     part: "Muscles",
     data: [
@@ -157,6 +169,7 @@ export const effects =[
       }
     ]
   },
+  "Brain":
   {
     part: "Brain",
     data: [
@@ -186,6 +199,7 @@ export const effects =[
       }
     ]
   },
+  "Eyes":
   {
     part: "Eyes",
     data: [
@@ -220,6 +234,7 @@ export const effects =[
       }
     ]
   },
+  "Heart":
   {
     part: "Heart",
     data: [
@@ -265,6 +280,8 @@ export const effects =[
       }
     ]
   },
+  // remains
+  "Psychological":
   {
     part: "Psychological",
     data: [
@@ -278,15 +295,34 @@ export const effects =[
       }
     ]
   },
+  "Intestines":
   {
     part: "Intestines",
     data: [
       {
         effect: "Microgravity reduces intestinal motility, altering digestion and waste disposal.",
         source: "https://www.bcm.edu/academic-centers/space-medicine/translational-research-institute/space-health-resources/how-the-body-changes-in-space"
+      },
+      {
+        effect: "Space conditions change nutrient absorption and digestive enzyme activity, leading to metabolic imbalances.",
+        source: "https://doi.org/10.1038/s41526-020-00129-7"
+      },
+      {
+        effect: "The intestinal barrier function weakens, raising the risk of microbial translocation and systemic inflammation.",
+        source: "https://doi.org/10.1038/s41526-020-00129-7"
+      },
+      {
+        effect: "The balance of gut microbiota shifts in space, with potential loss of beneficial microbes and increase in harmful species.",
+        source: "https://doi.org/10.1038/s41526-020-00129-7"
+      },
+      {
+        effect: "These microbiome alterations may influence immunity, metabolism, and overall astronaut health during long missions.",
+        source: "https://doi.org/10.1038/s41526-020-00129-7"
       }
     ]
   },
+  // remains
+  "Ears":
   {
     part: "Ears",
     data: [
@@ -304,10 +340,14 @@ export const effects =[
       }
     ]
   },
+  "Legs":
   {
     part: "Legs",
     data: [
-      ,
+      {
+        effect: "Microgravity can lead to muscle atrophy and loss of strength in the legs.",
+        source: "https://www.bcm.edu/academic-centers/space-medicine/translational-research-institute/space-health-resources/how-the-body-changes-in-space"
+      },
       {
         effect: "Feet lose callouses from lack of standing pressure but may develop callouses on the tops from footholds in the ISS.",
         source: "https://www.bcm.edu/academic-centers/space-medicine/translational-research-institute/space-health-resources/how-the-body-changes-in-space"
@@ -318,6 +358,7 @@ export const effects =[
       }
     ]
   },
+  "Immune System": 
   {
     part: "Immune System",
     data: [
@@ -355,6 +396,7 @@ export const effects =[
       }
     ]
   },
+  "Skin":
   {
     part: "Skin",
     data: [
@@ -364,6 +406,7 @@ export const effects =[
       }
     ]
   },
+  "Reproductive System":
   {
     part : "Reproductive System",
     data: [
@@ -382,6 +425,8 @@ export const effects =[
       }
     ]
   },
+  // remains
+  "Blood":
   {
     part: "Blood",
     data: [
@@ -395,6 +440,8 @@ export const effects =[
       }
     ]
   },
+  // remains
+  "Molecular":
   {
     part: "Molecular",
     data: [
@@ -452,6 +499,8 @@ export const effects =[
       }
     ]
   },
+  // remains
+  "Thymus":
   {
     part: "Thymus",
     data: [
@@ -465,6 +514,21 @@ export const effects =[
       }
     ]
   },
+  "Stomach" :
+  {
+    part: "Stomach",
+    data: [
+      {
+        effect: "Spaceflight alters stomach function, with changes in gastric acid secretion and stress-related mucosal injury risk.",
+        source: "https://doi.org/10.1038/s41526-020-00129-7"
+      },
+      {
+        effect: "Microgravity disrupts the stomach's protective lining, increasing susceptibility to inflammation and lesions.",
+        source: "https://doi.org/10.1038/s41526-020-00129-7"
+      }
+    ]
+  },
+  "Spleen":
   {
     part: "Spleen",
     data: [
@@ -479,5 +543,4 @@ export const effects =[
     ]
   }
 
-
-]
+};
