@@ -54,10 +54,10 @@ function Navbar() {
               Research
             </li>
             <li className="hover:text-blue-400 cursor-pointer transition-all duration-300 hover:scale-105">
-              Publications
+              <Link to="/chatbot">Chat</Link>
             </li>
             <li className="hover:text-blue-400 cursor-pointer transition-all duration-300 hover:scale-105">
-              About
+              <Link to="/about">About</Link>
             </li>
           </ul>
 
@@ -96,17 +96,7 @@ function Navbar() {
                     </div>
                   )}
                 </div>
-
-                {/* Chat with Bot Button */}
-                <button 
-                  className="border border-gray-400 hover:border-white px-4 py-2 rounded-lg font-semibold transition-colors duration-200"
-                  onClick={() => {
-                    console.log("Chat with Bot clicked");
-                    navigate("/open");
-                  }}
-                >
-                  Chat with Bot
-                </button>
+                
               </>
             ) : (
               <>
@@ -120,11 +110,7 @@ function Navbar() {
                     Create Account
                   </button>
                 </Link>
-                <Link to="/open">
-                  <button className="border border-gray-400 hover:border-white px-4 py-2 rounded-lg font-semibold transition-colors duration-200">
-                    Chat with Bot
-                  </button>
-                </Link>
+               
               </>
             )}
           </div>
