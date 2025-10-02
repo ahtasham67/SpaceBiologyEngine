@@ -1,14 +1,22 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
-import HomePage from './pages/HomePage'
+import { Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
+import OpenPage from "./pages/OpenPage";
+import SignupPage from "./pages/SignupPage";
+import "./App.css";
+import { UserProvider } from "./UserContext.jsx";
 
 function App() {
   return (
-    <HomePage />
-  )
+    <UserProvider>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+  <Route path="/open" element={<OpenPage />} />
+  <Route path="/signup" element={<SignupPage />} />
+      </Routes>
+    </UserProvider>
+  );
 }
 
-export default App
+export default App;
