@@ -1,27 +1,44 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
-import OrganModal from "../components/OrganModal";
+
+import EnhancedOrganModal from "../components/EnhancedOrganModal";
 
 export default function DigitalTwinViewer() {
   const [selectedPart, setSelectedPart] = useState(null);
 
   return (
-    <div className="relative w-full h-screen bg-gradient-to-b from-gray-900 to-black flex flex-col items-center justify-center p-4">
-      {/* Navigation */}
-      <div className="absolute top-4 left-4">
-        <Link
-          to="/"
-          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors flex items-center gap-2"
-        >
-          ← Back to Home
-        </Link>
+    <div className="min-h-screen bg-slate-900 text-white relative overflow-hidden">
+      {/* Stellar background */}
+      <div className="stellar-bg absolute inset-0"></div>
+
+      {/* Nebula background effects */}
+      <div className="nebula-bg absolute inset-0"></div>
+
+      {/* Floating cosmic elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-10 left-10 w-2 h-2 bg-blue-400 rounded-full twinkle-animation"></div>
+        <div
+          className="absolute top-20 right-20 w-1 h-1 bg-white rounded-full twinkle-animation"
+          style={{ animationDelay: "1s" }}
+        ></div>
+        <div
+          className="absolute bottom-32 left-32 w-1.5 h-1.5 bg-blue-300 rounded-full twinkle-animation"
+          style={{ animationDelay: "2s" }}
+        ></div>
+        <div
+          className="absolute top-40 left-1/3 w-1 h-1 bg-white rounded-full twinkle-animation"
+          style={{ animationDelay: "0.5s" }}
+        ></div>
+        <div
+          className="absolute bottom-20 right-1/4 w-2 h-2 bg-blue-500 rounded-full twinkle-animation"
+          style={{ animationDelay: "1.5s" }}
+        ></div>
       </div>
-
-      <h1 className="text-3xl font-bold text-white mb-6">
-        Human Body in Space - Digital Twin
-      </h1>
-
+    <Navbar />
+      {/* Navigation */}
+    <div className="relative w-full min-h-screen bg-gradient-to-b from-gray-900 to-black flex flex-col items-center pt-24 pb-8 px-4">
       <div className="relative w-80 max-w-sm">
         <img
           src="/anatomy.jpg"
@@ -223,10 +240,11 @@ export default function DigitalTwinViewer() {
         </button>
       </div>
 
-      <OrganModal
+      <EnhancedOrganModal
         selectedPart={selectedPart}
         onClose={() => setSelectedPart(null)}
       />
     </div>
+  </div>
   );
 }

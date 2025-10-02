@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar.jsx";
+import Footer from "../components/Footer.jsx";
 
 function HomePage() {
   return (
@@ -31,33 +33,7 @@ function HomePage() {
       </div>
 
       {/* Navbar */}
-      <nav className="relative z-10 flex justify-between items-center p-6 border-b border-gray-800/50 backdrop-blur-sm">
-        <div className="flex items-center gap-3">
-          <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg flex items-center justify-center cosmic-glow">
-            <span className="text-white font-bold text-lg">🧬</span>
-          </div>
-          <h1 className="text-2xl font-bold space-font cosmic-text">
-            SpaceBio Engine
-          </h1>
-        </div>
-        <ul className="hidden md:flex gap-8 text-gray-300 space-font">
-          <li className="hover:text-blue-400 cursor-pointer transition-all duration-300 hover:scale-105">
-            <Link to="/">Home</Link>
-          </li>
-          <li className="hover:text-blue-400 cursor-pointer transition-all duration-300 hover:scale-105">
-            <Link to="/digital-twin">Digital Twin</Link>
-          </li>
-          <li className="hover:text-blue-400 cursor-pointer transition-all duration-300 hover:scale-105">
-            Research
-          </li>
-          <li className="hover:text-blue-400 cursor-pointer transition-all duration-300 hover:scale-105">
-            Publications
-          </li>
-          <li className="hover:text-blue-400 cursor-pointer transition-all duration-300 hover:scale-105">
-            About
-          </li>
-        </ul>
-      </nav>
+      <Navbar />
 
       {/* Main Content */}
       <main className="relative z-10 max-w-7xl mx-auto px-6 py-20">
@@ -155,16 +131,7 @@ function HomePage() {
       </main>
 
       {/* Footer */}
-      <footer className="relative z-10 border-t border-gray-800/50 py-8 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <p className="text-gray-400 space-font">
-            &copy; 2025 SpaceBio Engine. Advancing life among the stars.
-          </p>
-          <div className="flex justify-center mt-4">
-            <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent"></div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
