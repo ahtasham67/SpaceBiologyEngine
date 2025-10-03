@@ -1,7 +1,6 @@
-
-import React, { useState, useRef, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useUser } from '../UserContext.jsx';
+import { useEffect, useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useUser } from "../UserContext.jsx";
 
 function Navbar() {
     const { user, logout } = useUser();
@@ -12,7 +11,10 @@ function Navbar() {
     const handleLogout = () => {
         logout();
         navigate("/");
-    };    // Close dropdown when clicking outside
+        setDropdownOpen(false);
+    };
+
+    // Close dropdown when clicking outside
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -20,9 +22,9 @@ function Navbar() {
             }
         };
 
-        document.addEventListener('mousedown', handleClickOutside);
+        document.addEventListener("mousedown", handleClickOutside);
         return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener("mousedown", handleClickOutside);
         };
     }, []);
 
@@ -48,8 +50,8 @@ function Navbar() {
               <Link to="/digital-twin">Digital Twin</Link>
             </li>
             <li className="hover:text-blue-400 cursor-pointer transition-all duration-300 hover:scale-105">
-              Research
-            </li>
+            <Link to="/publications">Publications</Link>
+          </li>
             <li className="hover:text-blue-400 cursor-pointer transition-all duration-300 hover:scale-105">
               <Link to="/chatbot">Chat</Link>
             </li>
@@ -58,62 +60,70 @@ function Navbar() {
             </li>
           </ul>
 
-          {/* User Authentication Section */}
-          <div className="flex items-center gap-4">
-            {user ? (
-              <>
-                {/* User Dropdown */}
-                <div className="relative" ref={dropdownRef}>
-                  <button
-                    onClick={() => setDropdownOpen(!dropdownOpen)}
-                    className="flex items-center gap-2 bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-800 transition-colors duration-200"
+        {/* User Authentication Section */}
+        <div className="flex items-center gap-4">
+          {user ? (
+            <>
+              {/* User Dropdown */}
+              <div className="relative" ref={dropdownRef}>
+                <button
+                  onClick={() => setDropdownOpen(!dropdownOpen)}
+                  className="flex items-center gap-2 bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-800 transition-colors duration-200"
+                >
+                  <span>{user.username}</span>
+                  <svg
+                    className={`w-4 h-4 transition-transform duration-200 ${
+                      dropdownOpen ? "rotate-180" : ""
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
                   >
-                    <span>{user.username}</span>
-                    <svg
-                      className={`w-4 h-4 transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`}
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
 
-                  {/* Dropdown Menu */}
-                  {dropdownOpen && (
-                    <div className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-lg shadow-lg border border-gray-700 z-50">
-                      <div className="py-1">
-                        <button
-                          onClick={handleLogout}
-                          className="w-full text-left px-4 py-2 text-gray-300 hover:bg-red-600 hover:text-white transition-colors duration-200"
-                        >
-                          Logout
-                        </button>
-                      </div>
+                {/* Dropdown Menu */}
+                {dropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-lg shadow-lg border border-gray-700 z-50">
+                    <div className="py-1">
+                      <button
+                        onClick={handleLogout}
+                        className="w-full text-left px-4 py-2 text-gray-300 hover:bg-red-600 hover:text-white transition-colors duration-200"
+                      >
+                        Logout
+                      </button>
                     </div>
-                  )}
-                </div>
-                
-              </>
-            ) : (
-              <>
-                <Link to="/login">
-                  <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors duration-200">
-                    Login
-                  </button>
-                </Link>
-                <Link to="/signup">
-                  <button className="bg-blue-400 hover:bg-blue-500 text-white px-4 py-2 rounded-lg font-semibold transition-colors duration-200">
-                    Create Account
-                  </button>
-                </Link>
-               
-              </>
-            )}
-          </div>
+                  </div>
+                )}
+              </div>
+
+             
+            </>
+          ) : (
+            <>
+              <Link to="/login">
+                <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors duration-200">
+                  Login
+                </button>
+              </Link>
+              <Link to="/signup">
+                <button className="bg-blue-400 hover:bg-blue-500 text-white px-4 py-2 rounded-lg font-semibold transition-colors duration-200">
+                  Create Account
+                </button>
+              </Link>
+              
+            </>
+          )}
         </div>
-      </nav>
-    );
+      </div>
+    </nav>
+  );
 }
 
 export default Navbar;

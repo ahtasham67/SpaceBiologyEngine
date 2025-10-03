@@ -5,12 +5,11 @@ from typing import List, Optional
 from services.geminiServices import generate_text
 from services.ragServices import query_rag
 import uvicorn
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel, EmailStr
-from supabase import create_client, Client
-from typing import Optional, List
 from dotenv import load_dotenv
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel, EmailStr
+from supabase import Client, create_client
 
 load_dotenv()
 
