@@ -5,3 +5,7 @@ google-generativeai
 python-multipart
 supabase
 pydantic[email]
+pypdf
+langchain_core
+langchain_community
+chromadb

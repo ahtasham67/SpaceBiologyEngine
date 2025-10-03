@@ -17,7 +17,7 @@
 
 ## 🌌 About
 
-SpaceBio Engine is an innovative web platform that makes space biology research accessible through two powerful features: an intelligent AI chatbot and an interactive digital twin of the human body.
+SpaceBio Engine is an innovative web platform that makes space biology research accessible through two powerful features: an intelligent AI research chatbot and an interactive digital twin of the human body.
 
 Our AI chatbot answers "what-if" questions about space biology, explains complex research findings, and provides insights backed by NASA datasets. The interactive digital twin allows users to click on different body parts to discover how space environments affect human physiology, with AI-powered explanations and references to original research papers.
 
