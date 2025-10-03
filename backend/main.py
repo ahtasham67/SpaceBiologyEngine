@@ -1,4 +1,6 @@
+import csv
 import os
+from typing import List, Optional
 
 from services.geminiServices import generate_text
 from services.ragServices import query_rag
@@ -204,4 +206,135 @@ def explain_concept(request: ConceptRequest):
     # explanation = "Space biology is the study of how living organisms adapt to the conditions of space, including microgravity, radiation, and isolation. It encompasses research on human physiology, plant growth, microbial behavior, and animal biology in space environments. Understanding these effects is crucial for long-duration space missions and the health of astronauts."
     return {"concept": prompt, "explanation": explanation}
 
-# git add . && git commit -m "Updated " && git push
+
+def categorize_publication(title):
+    """Categorize publication based on title keywords"""
+    title_lower = title.lower()
+    
+    categories = []
+    
+    # Cellular & Molecular Biology
+    if any(word in title_lower for word in ['cell', 'gene', 'dna', 'rna', 'protein', 'molecular', 'stem', 'embryonic']):
+        categories.append('cellular_biology')
+    
+    # Bone & Muscle Systems
+    if any(word in title_lower for word in ['bone', 'muscle', 'skeletal', 'vertebrae', 'pelvic', 'collagen']):
+        categories.append('musculoskeletal')
+    
+    # Plant Biology
+    if any(word in title_lower for word in ['arabidopsis', 'plant', 'root', 'pollen', 'golgi', 'vacuolar']):
+        categories.append('plant_biology')
+    
+    # Cardiovascular & Physiology
+    if any(word in title_lower for word in ['heart', 'cardiovascular', 'blood', 'circulation']):
+        categories.append('cardiovascular')
+    
+    # Radiation Studies
+    if any(word in title_lower for word in ['radiation', 'oxidative', 'stress', 'ion', 'dose']):
+        categories.append('radiation_studies')
+    
+    # Microgravity Effects
+    if any(word in title_lower for word in ['microgravity', 'gravity', 'gravitropism', 'spaceflight', 'space']):
+        categories.append('microgravity_effects')
+    
+    # Mission & Space Studies
+    if any(word in title_lower for word in ['iss', 'bion', 'mission', 'nasa', 'exploration', 'astronaut']):
+        categories.append('space_missions')
+    
+    # Animal Models
+    if any(word in title_lower for word in ['mice', 'mouse', 'murine', 'drosophila', 'animal']):
+        categories.append('animal_models')
+    
+    return categories if categories else ['general']
+
+@app.get("/api/publications")
+def get_publications():
+    """Get all space biology publications from CSV file"""
+    try:
+        publications = []
+        csv_path = os.path.join(os.path.dirname(__file__), "SB_publication_PMC.csv")
+        
+        # Check if file exists
+        if not os.path.exists(csv_path):
+            raise HTTPException(status_code=404, detail="Publications file not found")
+        
+        # Read CSV file
+        with open(csv_path, 'r', encoding='utf-8-sig') as file:  # utf-8-sig handles BOM
+            csv_reader = csv.DictReader(file)
+            for row in csv_reader:
+                # Handle both with and without BOM
+                title = row.get("Title", "") or row.get("\ufeffTitle", "")
+                link = row.get("Link", "").strip()
+                
+                # Extract PMC ID from URL
+                pmc_id = ""
+                if "PMC" in link:
+                    import re
+                    match = re.search(r'PMC(\d+)', link)
+                    if match:
+                        pmc_id = f"PMC{match.group(1)}"
+                
+                # Categorize publication
+                categories = categorize_publication(title)
+                
+                publications.append({
+                    "title": title.strip(),
+                    "link": link,
+                    "pmc_id": pmc_id,
+                    "source": "PubMed Central",
+                    "categories": categories
+                })
+        
+        return publications
+        
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Publications file not found")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error reading publications: {str(e)}")
+
+@app.get("/api/publications/analytics")
+def get_publications_analytics():
+    """Get analytics data for publications"""
+    try:
+        csv_path = os.path.join(os.path.dirname(__file__), "SB_publication_PMC.csv")
+        
+        if not os.path.exists(csv_path):
+            raise HTTPException(status_code=404, detail="Publications file not found")
+        
+        # Collect all words and categories
+        word_frequency = {}
+        category_counts = {}
+        
+        with open(csv_path, 'r', encoding='utf-8-sig') as file:
+            csv_reader = csv.DictReader(file)
+            for row in csv_reader:
+                title = row.get("Title", "") or row.get("\ufeffTitle", "")
+                
+                # Count categories
+                categories = categorize_publication(title)
+                for category in categories:
+                    category_counts[category] = category_counts.get(category, 0) + 1
+                
+                # Count important words (filter out common words)
+                words = title.lower().split()
+                important_words = [word for word in words if len(word) > 3 and 
+                                 word not in ['the', 'and', 'for', 'with', 'from', 'that', 'this', 'have', 'been', 'were', 'are']]
+                
+                for word in important_words:
+                    # Clean word (remove punctuation)
+                    clean_word = ''.join(char for char in word if char.isalnum())
+                    if len(clean_word) > 3:
+                        word_frequency[clean_word] = word_frequency.get(clean_word, 0) + 1
+        
+        # Get top words
+        top_words = sorted(word_frequency.items(), key=lambda x: x[1], reverse=True)[:50]
+        
+        return {
+            "category_distribution": category_counts,
+            "top_keywords": [{"word": word, "count": count} for word, count in top_words],
+            "total_publications": sum(category_counts.values())
+        }
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error analyzing publications: {str(e)}")
+
