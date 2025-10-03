@@ -10,7 +10,6 @@ import SignupPage from "./pages/SignupPage";
 import AboutPage from "./pages/AboutPage";
 import { UserProvider, useUser } from "./UserContext.jsx";
 import Chatbot from "./pages/Chatbot.jsx";
-import { UserProvider } from "./UserContext.jsx";
 
 function AppContent() {
 
@@ -21,6 +20,7 @@ function AppContent() {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/chatbot" element={<Chatbot />} />
+      <Route path="/publications" element={<Publications />} />
       <Route path="/about" element={<AboutPage />} />
     </Routes>
   );
