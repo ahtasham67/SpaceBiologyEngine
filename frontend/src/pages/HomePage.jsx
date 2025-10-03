@@ -6,13 +6,8 @@ import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
 
 function HomePage() {
-  const { user, setUser } = useUser();
+  const { user, logout } = useUser();
   const navigate = useNavigate();
-
-  const handleLogout = () => {
-    setUser(null);
-    navigate("/");
-  };
 
   return (
     <div className="min-h-screen bg-slate-900 text-white relative overflow-hidden">

@@ -4,18 +4,15 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useUser } from '../UserContext.jsx';
 
 function Navbar() {
-    const { user, setUser } = useUser();
+    const { user, logout } = useUser();
     const navigate = useNavigate();
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const dropdownRef = useRef(null);
 
     const handleLogout = () => {
-        setUser(null);
+        logout();
         navigate("/");
-        setDropdownOpen(false);
-    };
-
-    // Close dropdown when clicking outside
+    };    // Close dropdown when clicking outside
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {

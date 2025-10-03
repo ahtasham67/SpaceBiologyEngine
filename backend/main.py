@@ -1,6 +1,7 @@
 import os
 
 from services.geminiServices import generate_text
+from services.ragServices import query_rag
 import uvicorn
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, EmailStr
@@ -8,6 +9,7 @@ from supabase import create_client, Client
 from typing import Optional, List
 from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
+
 load_dotenv()
 
 # Pydantic model for request body
@@ -21,6 +23,8 @@ SUPABASE_URL = "https://kkatmfvuomnsyrqoyflf.supabase.co"
 SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtrYXRtZnZ1b21uc3lycW95ZmxmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg5MTM2NzUsImV4cCI6MjA3NDQ4OTY3NX0.NTatWz9h1v6HtPbkBqlcqoPwo0w25D-VROekJ1X_Lro"
 
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
+
+
 
 
 app = FastAPI()
@@ -155,21 +159,35 @@ async def start_session(session: ChatSession):
 @app.post("/send_message")
 async def send_message(message: Message):
     try:
-        response = supabase.table("messages").insert({
+        # Save user message
+        user_message_response = supabase.table("messages").insert({
             "session_id": message.session_id,  # integer ID
             "sender": message.sender,
-            "message": message.message
+            "message": message.message,
+            "user_id": 10
         }).execute()
 
-        return {"success": True, "data": response.data}
+        # Generate AI response using RAG
+        rag_result = query_rag(message.message)
+        ai_response = rag_result.get('answer', 'Sorry, I could not generate a response.')
+        
+        # Save AI message
+        ai_message_response = supabase.table("messages").insert({
+            "session_id": message.session_id,
+            "sender": "ai",
+            "message": ai_response,
+            "user_id": 10
+        }).execute()
+
+        return {"success": True, "data": ai_response}
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-@app.get("/get_messages/{session_id}")
-async def get_messages(session_id: int):
+@app.get("/get_messages/{user_id}")
+async def get_messages(user_id: int):
     try:
-        response = supabase.table("messages").select("*").eq("session_id", session_id).execute()
+        response = supabase.table("messages").select("*").eq("user_id", user_id).execute()
         return {"success": True, "messages": response.data}
 
     except Exception as e:

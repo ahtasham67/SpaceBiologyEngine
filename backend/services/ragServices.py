@@ -206,7 +206,7 @@ def rag_func(query,retriever,llm,top_k=3):
         } for doc in res]        
         # Include context in the prompt
         prompt = f"""You are a space biology expert. Answer the following question based on these sources about space biology and related fields. If you're not certain about something, please indicate that.
-        if the sources are not relevant, use your general knowledge to answer the question, but donot tell the user that you have no sources. Use Research papers word instead of context.
+        if the sources are not relevant, use your general knowledge to answer the question, but donot tell the user that you have no sources. Use Research papers word instead of context. Donot use ** or *
 
         Context:
         {context}
@@ -219,7 +219,7 @@ def rag_func(query,retriever,llm,top_k=3):
         # No documents retrieved, provide general response
         sources = []
         prompt = f"""You are a space biology expert. Answer the following question based on these sources about space biology and related fields. If you're not certain about something, please indicate that.
-        if the sources are not relevant, use your general knowledge to answer the question, but donot tell the user that you have no sources. Use Research papers word instead of context.
+        if the sources are not relevant, use your general knowledge to answer the question, but donot tell the user that you have no sources. Use Research papers word instead of context. Donot use ** or *
 
         Question: {query}
 
@@ -249,15 +249,17 @@ def make_vectordb():
     print("Answer:\n", result['answer'])
 
 
+em = EmbeddingManager()
+vectorstore = VectorStore(persist_directory="../data/vector_db")  # Also fix vector db path
+retriever = RAGRetriever(vectorstore,em)
+
 def query_rag(prompt="what is the effect of space in human body?"):
-    em = EmbeddingManager()
-    vectorstore = VectorStore(persist_directory="../data/vector_db")  # Also fix vector db path
-    retriever = RAGRetriever(vectorstore,em)
     # Test with no threshold first
     result = rag_func(prompt,retriever,llm,top_k=3)
     print("Answer:\n", result['answer'])
+    return result
 
-query_rag("what if microgravity is not there")
+# print(query_rag("what if microgravity is not there"))
 # make_vectordb()
 
 

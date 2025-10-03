@@ -10,7 +10,7 @@ function SignupPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const { setUser } = useUser();
+  const { login } = useUser();
   const navigate = useNavigate();
 
   const handleSignup = async (e) => {
@@ -26,7 +26,7 @@ function SignupPage() {
       const data = await res.json();
       if (data.success && data.data) {
         setSuccess("Account created! Logging in...");
-        setUser({ username, email, id: data.data[0]?.id });
+        login({ username, email, id: data.data[0]?.id });
         setTimeout(() => navigate("/"), 1000);
       } else {
         setError("Could not create account. Try a different username/email.");

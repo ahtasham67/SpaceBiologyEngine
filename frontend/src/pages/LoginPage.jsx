@@ -9,7 +9,7 @@ function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const { setUser } = useUser();
+  const { login } = useUser();
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -27,7 +27,7 @@ function LoginPage() {
         setSuccess("Login successful!");
         setUsername("");
         setPassword("");
-        setUser(data.user); // Save user info globally
+        login(data.user); // Save user info globally
         setTimeout(() => navigate("/"), 1000); // Redirect to homepage
       } else {
         setError("Invalid username or password.");

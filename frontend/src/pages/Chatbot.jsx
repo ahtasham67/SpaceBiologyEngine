@@ -9,6 +9,7 @@ function Chatbot() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [sessionId, setSessionId] = useState(null);
+  const [isAiThinking, setIsAiThinking] = useState(false);
   const chatEndRef = useRef(null);
   const { user } = useUser();
 
@@ -43,13 +44,19 @@ function Chatbot() {
   // Fetch messages when sessionId changes or after sending
   useEffect(() => {
     if (!sessionId || sessionId === "demo-session") return;
+    if (!user?.id) return;
     async function fetchMessages() {
       try {
-        const res = await fetch(`${API_URL}/get_messages/${sessionId}`);
+        const res = await fetch(`${API_URL}/get_messages/${user?.id}`);
         if (!res.ok) throw new Error("Backend error");
         const data = await res.json();
         if (data.success) {
-          setMessages(data.messages || []);
+          // Transform backend message format to frontend format
+          const transformedMessages = (data.messages || []).map(msg => ({
+            sender: msg.sender,
+            message: msg.message
+          }));
+          setMessages(transformedMessages);
         }
       } catch (err) {
         // fallback: do nothing
@@ -64,65 +71,80 @@ function Chatbot() {
 
   const handleSend = async (e) => {
     e.preventDefault();
-    if (!input.trim() || !sessionId) return;
+    if (!input.trim()) return;
+
+    const userMessage = input.trim();
+    
+    // Immediately add user message to frontend
+    setMessages((msgs) => [
+      ...msgs,
+      { sender: "user", message: userMessage }
+    ]);
+    
+    // Clear input immediately
+    setInput("");
+    
+    // Show AI thinking indicator
+    setIsAiThinking(true);
 
     if (sessionId === "demo-session") {
-      // Fallback: just update local state
-      setMessages((msgs) => [
-        ...msgs,
-        { sender: "user", message: input },
-        { sender: "ai", message: `You asked: \"${input}\". (AI response here)` }
-      ]);
-      setInput("");
+      // Fallback: simulate AI response for demo mode
+      setTimeout(() => {
+        setIsAiThinking(false);
+        setMessages((msgs) => [
+          ...msgs,
+          { sender: "ai", message: `You asked: "${userMessage}".` }
+        ]);
+      }, 1000);
       return;
     }
 
-    // Send user message to backend
+    // Send user message to backend and get AI response
     try {
-      await fetch(`${API_URL}/send_message`, {
+      const res = await fetch(`${API_URL}/send_message`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           session_id: sessionId,
           sender: "user",
-          message: input
+          message: userMessage
         })
       });
-      setInput("");
+      console.log(res);
+      
 
-      // Optionally, send to AI and store response (simulate for now)
-      setTimeout(async () => {
-        await fetch(`${API_URL}/send_message`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            session_id: sessionId,
-            sender: "ai",
-            message: `You asked: \"${input}\". (AI response here)`
-          })
-        });
-        // Refresh messages
-        const res = await fetch(`${API_URL}/get_messages/${sessionId}`);
+      if (res.ok) {
         const data = await res.json();
-        if (data.success) {
-          setMessages(data.messages || []);
+        
+        // Hide AI thinking indicator
+        setIsAiThinking(false);
+        
+        // Add AI response to messages when API call succeeds
+        if (data && data.data) {
+          setMessages((msgs) => [
+            ...msgs,
+            { sender: "ai", message: data.data }
+          ]);
+        } else {
+          // Fallback if response format is different
+          setMessages((msgs) => [
+            ...msgs,
+            { sender: "ai", message: "I received your message but couldn't generate a proper response." }
+          ]);
         }
-      }, 1000);
-
-      // Refresh messages immediately for user message
-      const res = await fetch(`${API_URL}/get_messages/${sessionId}`);
-      const data = await res.json();
-      if (data.success) {
-        setMessages(data.messages || []);
+      } else {
+        throw new Error("API call failed");
       }
+
     } catch (err) {
-      // fallback: just update local state
+      console.error("Error sending message:", err);
+      // Hide AI thinking indicator
+      setIsAiThinking(false);
+      // Fallback: show error message
       setMessages((msgs) => [
         ...msgs,
-        { sender: "user", message: input },
-        { sender: "ai", message: `You asked: \"${input}\". (AI response here)` }
+        { sender: "ai", message: "Sorry, I'm having trouble connecting to the server. Please try again." }
       ]);
-      setInput("");
     }
   };
 
@@ -196,6 +218,20 @@ function Chatbot() {
                 </div>
               </div>
             ))}
+            
+            {/* AI Thinking Indicator */}
+            {isAiThinking && (
+              <div className="flex justify-start mb-4">
+                <div className="px-5 py-4 rounded-2xl bg-gradient-to-r from-purple-600/20 to-blue-600/20 text-gray-100 border border-blue-500/30 flex items-center space-x-2">
+                  <div className="flex space-x-1">
+                    <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce"></div>
+                    <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
+                    <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+                  </div>
+                  <span className="text-sm text-blue-300">AI is thinking...</span>
+                </div>
+              </div>
+            )}
             <div ref={chatEndRef} />
           </div>
           
@@ -203,19 +239,19 @@ function Chatbot() {
           <form className="flex gap-3 px-6 pb-6" onSubmit={handleSend}>
             <input
               type="text"
-              className="flex-1 px-5 py-4 rounded-xl bg-gray-800/50 border border-blue-500/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent text-lg"
-              placeholder="Ask about space biology, microgravity effects..."
+              className="flex-1 px-5 py-4 rounded-xl bg-gray-800/50 border border-blue-500/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+              placeholder={isAiThinking ? "AI is thinking..." : "Ask about space biology, microgravity effects..."}
               value={input}
               onChange={(e) => setInput(e.target.value)}
               autoFocus
-              disabled={false}
+              disabled={isAiThinking}
             />
             <button
               type="submit"
-              className="space-button bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white font-bold px-8 py-4 rounded-xl transition-all duration-300 cosmic-glow"
-              disabled={!input.trim()}
+              className="space-button bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white font-bold px-8 py-4 rounded-xl transition-all duration-300 cosmic-glow disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={!input.trim() || isAiThinking}
             >
-              🚀 Send
+              {isAiThinking ? "🤖 Thinking..." : "🚀 Send"}
             </button>
           </form>
         </div>
