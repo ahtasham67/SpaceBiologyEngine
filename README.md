@@ -7,7 +7,7 @@
 ![FastAPI](https://img.shields.io/badge/FastAPI-Python-009688?style=for-the-badge&logo=fastapi)
 ![NASA](https://img.shields.io/badge/NASA-Dataset-red?style=for-the-badge&logo=nasa)
 
-**An intelligent platform combining AI-powered chatbot and interactive digital twin technology to explore space biology effects on the human body**
+**An intelligent platform combining AI-powered chatbot, research publication search and interactive digital twin technology to explore space biology effects on the human body**
 
 [🚀 Getting Started](#installation)
 
@@ -22,11 +22,13 @@
 
 ## 🌌 About
 
-SpaceBio Engine is an innovative web platform that makes space biology research accessible through two powerful features: an intelligent AI research chatbot and an interactive digital twin of the human body.
+SpaceBio Engine is an innovative web platform that makes space biology research accessible through three powerful features:
 
-Our AI chatbot answers "what-if" questions about space biology, explains complex research findings, and provides insights backed by NASA datasets. The interactive digital twin allows users to click on different body parts to discover how space environments affect human physiology, with AI-powered explanations and references to original research papers.
+- **AI Research Chatbot** – Ask questions about space biology and get precise, context-aware answers backed by NASA datasets. Complex findings are simplified into easy-to-understand explanations.
+- **Publication Search & Categorization** – Explore, filter, and organize NASA space biology research papers to gain rapid insights and stay updated with the latest discoveries.
+- **Interactive Digital Twin** – Click on different parts of a human body model to see how space environments affect physiology, from immunity to genetics, with AI-powered explanations and direct references to original research.
 
-Whether you're a researcher, student, or space enthusiast, SpaceBio Engine transforms complex space biology data into understandable, interactive experiences.
+Whether you’re a researcher, student, or space enthusiast, SpaceBio Engine transforms complex space biology data into an understandable, searchable, and interactive experience.
 
 ## ✨ Key Features
 
@@ -132,6 +134,11 @@ uvicorn main:app --reload --host 0.0.0.0 --port 8000
 4. Access related research papers and studies
 5. Effects can be explained by AI in a easy, concise and precise manner
 
+### 3. Publication Search
+1. Go to the **Publications** page
+2. Browse or filter NASA space biology papers
+3. Organize publications by topic
+4. Quickly identify relevant studies for research
 
 ## 🏗️ Project Structure
 
@@ -151,8 +158,9 @@ SpaceBiologyEngine/
 │   ├── main.py            # Application entry point
 │   ├── models/            # Data models
 │   ├── routes/            # API endpoints
-│   └── services/          # Business logic
+│   └── services/          # Business logic 
 │   └── utils/          # helper functions
+│   └── data/          # contains files related to RAG
 └── README.md              # Project documentation
 ```
 
